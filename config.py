@@ -127,5 +127,10 @@ LEAD_MD_PATH = OUTPUT_DIR / "leadpage_status.md"
 LEAD_HTML_PATH = OUTPUT_DIR / "leadpage_status.html"
 LEAD_PDF_PATH = OUTPUT_DIR / "leadpage_status.pdf"
 
-WKHTMLTOPDF_PATH = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"
+import platform
+if platform.system() == "Windows":
+    WKHTMLTOPDF_PATH = r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"
+else:
+    WKHTMLTOPDF_PATH = "wkhtmltopdf"
+
 CAPTURE_HEADERS = True
