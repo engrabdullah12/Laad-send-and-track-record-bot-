@@ -4,6 +4,9 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
 def create_chrome_driver(headless: bool = True) -> webdriver.Chrome:
+    import os
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        headless = True
     opts = Options()
     if headless:
         opts.add_argument("--headless=new")

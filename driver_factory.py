@@ -82,6 +82,9 @@ def _build_proxy_auth_extension():
 
 
 def get_chrome_options(headless: bool = True) -> Options:
+    import os
+    if os.environ.get("GITHUB_ACTIONS") == "true":
+        headless = True
     chrome_options = Options()
 
     use_auth_proxy = ProxyConfig.enabled and ProxyConfig.is_authenticated()
