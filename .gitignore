@@ -1,0 +1,21 @@
+# Virtual Environment
+venv/
+venv_new/
+.env
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest & IDEs
+.pytest_cache/
+.vscode/
+.idea/
+
+# PDF Reports & local generated files
+reports/*.pdf
+reports/*.html
+reports/*.md
+reports/leadpage_status.*
+scratch/

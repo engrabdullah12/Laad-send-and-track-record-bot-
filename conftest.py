@@ -31,7 +31,7 @@ def pytest_sessionstart(session):
         "- All data from lead pages successfully sent to Airtable.\n"
         "- Emails received.\n"
     )
-    init_md_report(sites_tested=sites, overview=overview_text, overwrite=True)
+    init_md_report(sites_tested=sites, overview=overview_text, overwrite=False)
 @pytest.hookimpl(trylast=True)
 def pytest_sessionfinish(session, exitstatus):
     """

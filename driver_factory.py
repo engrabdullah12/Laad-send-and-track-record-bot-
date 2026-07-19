@@ -12,9 +12,11 @@ import os
 import string
 import zipfile
 import tempfile
+import platform
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 from config import ProxyConfig
 
@@ -124,5 +126,11 @@ def get_chrome_options(headless: bool = True) -> Options:
 def get_driver(headless: bool = True) -> webdriver.Chrome:
     """Returns a ready-to-use Chrome WebDriver with the proxy applied."""
     options = get_chrome_options(headless=headless)
-    driver = webdriver.Chrome(options=options)
+    
+    if platform.system() == "Windows":
+        service = Service(executable_path=r"C:\Users\ic\AppData\Local\Programs\Python\Python312\Scripts\chromedriver.exe")
+        driver = webdriver.Chrome(service=service, options=options)
+    else:
+        driver = webdriver.Chrome(options=options)
+        
     return driver

@@ -18,7 +18,7 @@ import tests as tests_package
 def discover_site_modules():
     modules = []
     for _, name, _ in pkgutil.iter_modules(tests_package.__path__):
-        if name.startswith("test_lead_submission_"):
+        if name.startswith("test_"):
             modules.append(name)
     return modules
 
@@ -28,11 +28,14 @@ def run_all(headless: bool = True) -> LeadSubmissionReport:
     module_names = discover_site_modules()
 
     if not module_names:
-        print("[run_tests] No test_lead_submission_*.py files found in tests/.")
+        print("[run_tests] No test_*.py files found in tests/.")
         return report
 
     for module_name in module_names:
         module = importlib.import_module(f"tests.{module_name}")
+        if not hasattr(module, "run"):
+            print(f"[run_tests] Skipping module {module_name} (no 'run' function)")
+            continue
         site_name = getattr(module, "SITE_NAME", module_name)
 
         driver = None

@@ -66,6 +66,12 @@ class SchedulerConfig:
     run_once = _get_proxy_setting("scheduler", "run_once", "SCHEDULER_RUN_ONCE", "false").lower() == "true"
 
 
+class ReportConfig:
+    """Configuration for status reports."""
+    output_dir = _get_proxy_setting("reporting", "output_dir", "REPORT_OUTPUT_DIR", "reports")
+
+
+
     from pathlib import Path
 SITES = [ 
         {"name": "Signage Inc"},
