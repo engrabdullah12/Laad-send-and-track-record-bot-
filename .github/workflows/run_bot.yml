@@ -1,6 +1,8 @@
 name: Lead Submission Bot (Hourly)
 
 on:
+  push:
+    branches: [ main ]
   schedule:
     # Trigger every 60 minutes (exactly at the start of every hour)
     - cron: '0 * * * *'
